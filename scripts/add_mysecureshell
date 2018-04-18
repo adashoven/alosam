@@ -1,0 +1,18 @@
+#!/bin/bash
+nomuser=$1
+pass=$2
+#############################################################################
+#Create username /etc/passwd
+if grep -q ^$nomuser /etc/passwd; then
+        sudo echo "User $nomuser already exist in /etc/passwd !"
+else
+        sudo useradd -p $pass -s /usr/bin/mysecureshell $nomuser -g sftpusers
+        sudo echo "User $nomuser added in passwd,shadow and sftpusers group affected !"
+
+        #changing to encrypted password
+    sudo echo "$nomuser:$pass" | sudo chpasswd
+
+        sudo chown -R $nomuser:www-data /var/www/$nomuser
+fi
+
+
