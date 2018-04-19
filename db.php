@@ -1,7 +1,7 @@
 <?php
 	define('_HOST_NAME_', 'localhost');
 	define('_USER_NAME_', 'root');
-	define('_DB_PASSWORD', '');
+	define('_DB_PASSWORD', 'root');
 	define('_DATABASE_NAME_', 'test');
 	
 	//PDO Database Connection

@@ -2,10 +2,7 @@
      	session_start();
 	
 	//DB configuration Constants
-	define('_HOST_NAME_', 'localhost');
-	define('_USER_NAME_', 'root');
-	define('_DB_PASSWORD', '');
-	define('_DATABASE_NAME_', 'test');
+include('db.php');
 	
 	//PDO Database Connection
 	try {
