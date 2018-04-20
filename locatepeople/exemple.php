@@ -16,7 +16,7 @@ echo $record->longitude . "\n";
 $la = $record->latitude;
 $lo = $record->longitude;
 
-$url = "http://maps.google.com/maps/geo?output=csv&q=".$la.",".$lo;
+$url = "http://www.google.fr/maps/@".$la.",".$lo.",15z";
 
 if($csv = file_get_contents($url))
 {
