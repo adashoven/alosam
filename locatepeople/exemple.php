@@ -1,41 +1,67 @@
-<?php
-include("geoipcity.inc");
-include("geoipregionvars.php");
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
 
-$gi = geoip_open(realpath("GeoLiteCity.dat"),GEOIP_STANDARD);
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
 
-$record = geoip_record_by_addr($gi,$_SERVER['REMOTE_ADDR']);
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
-echo $record->country_name . "\n";
-echo $GEOIP_REGION_NAME[$record->country_code][$record->region] . "\n";
-echo $record->city . "\n";
-echo $record->postal_code . "\n";
-echo $record->latitude . "\n";
-echo $record->longitude . "\n";
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
 
-$la = $record->latitude;
-$lo = $record->longitude;
-
-$url = "http://www.google.fr/maps/@".$la.",".$lo.",15z";
-
-if($csv = file_get_contents($url))
-{
-   if(substr($csv,0,3)!=200)
-   {
-      die("Erreur");
-   }
-   else
-   {
-      $adresse = substr($csv, 7, -1);
-      echo $adresse;
-   }
-}
-else
-{
-   echo "Erreur";
-}
-
-
-geoip_close($gi);
-
-?>
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+  </body>
+</html>
