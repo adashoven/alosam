@@ -22,6 +22,7 @@
 <body>
 
 
+
                         <center><table style="border-collapse: separate;border-spacing: 5px 8px;">
                         <tr>
                             <td><center><a href="#infpers" class="page-scroll btn btn-xl" data-toggle="modal">Info Perso</a></center></td>
@@ -43,35 +44,7 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
                             <h2>Info Perso</h2>
-<?php
-include('db.php');
-            $login = $_SESSION['login'];
-    try {
-        $databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
-        $databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-    }
-            $records = $databaseConnection->prepare('SELECT id,nom,prenom,login,pass, mail FROM  test WHERE login = :login');
-            $records->bindParam(':login',$login );
-            $records->execute();
-            $results = $records->fetch(PDO::FETCH_ASSOC);
-            $nom = $results['nom'];
-            $prenom = $results['prenom'];   
- ?>
-<center>
-    <table>
-        <tr>
-            <td> nom </td>
-            <td> <?php echo $nom;?></td>
-        </tr>
-        <tr>
-            <td> prenom </td>
-            <td> <?php echo $prenom;?></td>
-        </tr>
-    </table>
-</center>
-
+                            <?php include("infoperso.php"); ?>
                         </div>
                     </div>
                 </div>
@@ -91,7 +64,8 @@ include('db.php');
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Info Perso</h2>
+                            <h2>Contact de Confiance</h2>
+                            <?php include("contconf.php"); ?>
                         </div>
                     </div>
                 </div>
@@ -111,14 +85,13 @@ include('db.php');
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Info Perso</h2>
+                            <h2>Avis</h2>
+                            <?php include("avcond.php"); ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
-
 </html>

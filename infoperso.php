@@ -1,28 +1,31 @@
 <?php
-include('db.php');
-			$login = $_SESSION['login'];
-	try {
-		$databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
-		$databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch(PDOException $e) {
-		echo 'ERROR: ' . $e->getMessage();
-	}
-			$records = $databaseConnection->prepare('SELECT id,nom,prenom,login,pass, mail FROM  test WHERE login = :login');
-			$records->bindParam(':login',$login );
-			$records->execute();
-			$results = $records->fetch(PDO::FETCH_ASSOC);
-			$nom = $results['nom'];
-			$prenom = $results['prenom'];	
+            $records = $databaseConnection->prepare('SELECT id,nom,prenom,login,pass, mail FROM  test WHERE login = :login');
+            $records->bindParam(':login',$login );
+            $records->execute();
+            $results = $records->fetch(PDO::FETCH_ASSOC);
+            $nom = $results['nom'];
+            $prenom = $results['prenom']; 
+            $mail  = $results['mail'];
  ?>
 <center>
-	<table>
-		<tr>
-			<td> nom </td>
-			<td> <?php echo $nom;?></td>
-		</tr>
-		<tr>
-			<td> prenom </td>
-			<td> <?php echo $prenom;?></td>
-		</tr>
-	</table>
+    <table>
+        <tr>
+            <td><p> Pseudo </p></td>
+            <td><p> <?php echo $login;?> </p></td>
+        </tr>        
+        <tr>
+        	
+            <td><p> Nom </p></td>
+            <td><p> <?php echo $nom;?> </p></td>
+        </tr>
+        <tr>
+            <td><p> Prenom </p></td>
+            <td><p> <?php echo $prenom;?> </p></td>
+        </tr>
+        <tr>
+            <td><p> Mail </p></td>
+            <td><p> <?php echo $mail;?> </p></td>
+        </tr>
+    </table>
+    <a href="chamdp.php">Vous voulez changer votre mot de passe ? Cliquez ici</a>
 </center>
