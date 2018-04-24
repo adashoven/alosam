@@ -149,7 +149,7 @@ session_start();
                             <h2>Historique</h2>
                             <p class="item-intro text-muted">Voici l'historique de vos anciennes commandes</p>
                             <!--<img class="img-responsive img-centered" src="img/portfolio/serveur-php-sql.png" alt="">-->
-                            <?php include("historique.php");?>
+                            <?php include("historique.php"); ?>
                             </ul>
                             <br>
                             <br>

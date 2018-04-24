@@ -28,4 +28,5 @@
         </tr>
     </table>
     <a href="chamdp.php">Vous voulez changer votre mot de passe ? Cliquez ici</a>
+    <?php include("adrs.php");?>
 </center>
