@@ -22,7 +22,7 @@ echo '
     <div classe="raw">
             <div class="col-md-6">
             <p class="text-muted">Sexe :</p>
-            <select name="sexe">
+            <select name="sexe" required>
             <option value="" selected></option> 
             <option value="Femme">Femme</option>
             <option value="Homme">Homme</option>
@@ -55,6 +55,7 @@ echo '
         <div class="col-md-6">
     <input type="submit" name="envoyer" value="envoyer" class="btn btn-xl">
         </div>
+
 
     </form>
 </body>';

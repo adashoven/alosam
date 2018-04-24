@@ -26,13 +26,14 @@ if($results['login'] == $_POST['pseudo'])
 			}
 			else
 			{
-				$req = $connexion->prepare('INSERT INTO `test`(`nom` ,`prenom` ,`pass` ,`login` ,`mail`) VALUES(:nom, :prenom, :pass, :login, :mail)');
+				$req = $connexion->prepare('INSERT INTO `test`(`nom` ,`prenom` ,`pass` ,`login` ,`mail`,`sexe`) VALUES(:nom, :prenom, :pass, :login, :mail, :sexe)');
 				$req->execute(array(
 					'nom' => $_POST['nom'],
 					'prenom' => $_POST['prenom'],
 					'pass' => $pass,
 					'login' => $_POST['pseudo'],
 					'mail' => $_POST['email'],
+					'sexe' => $_POST['sexe'],
 					)) or die (print_r($req->errorInfo()));
 					
 					$_SESSION['login'] = $_POST['pseudo'];
