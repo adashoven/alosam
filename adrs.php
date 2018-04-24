@@ -1,5 +1,1 @@
-<?php 
-
-
-?>
-<a href="addadress.php">vous souhaitez ajouter une adresse ? cliquez ici </a>
+<a href="addadress.php">vous souhaitez ajouter une adresse ? cliquez ici</a>

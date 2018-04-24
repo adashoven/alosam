@@ -27,6 +27,6 @@
             <td><p> <?php echo $mail;?> </p></td>
         </tr>
     </table>
-    <a href="chamdp.php">Vous voulez changer votre mot de passe ? Cliquez ici</a>
-    <?php include("adrs.php");?>
+    <a href="chamdp.php">Vous voulez changer votre mot de passe ? Cliquez ici</a> <br>
+    <?php include("adrs.php"); ?>
 </center>

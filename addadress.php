@@ -159,7 +159,7 @@
         setupClickListener('changetype-geocode', ['geocode']);
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9cI_XG36NMDdjEj7wM8HbJ3qyCUGwMgE&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJO3F13I6L2UiUCdfqSw-v0LaJIdlitSs&libraries=places&callback=initMap"
         async defer></script>
   </body>
 </html>

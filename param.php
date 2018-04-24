@@ -23,7 +23,7 @@
 
 
 
-                        <center><table style="border-collapse: separate;border-spacing: 5px 8px;">
+                        <center> <table style="border-collapse: separate;border-spacing: 5px 8px;">
                         <tr>
                             <td><center><a href="#infpers" class="page-scroll btn btn-xl" data-toggle="modal">Info Perso</a></center></td>
                         <td><center><a href="#contconf" class="page-scroll btn btn-xl" data-toggle="modal">Contacts de Confiance</a></center></td>
