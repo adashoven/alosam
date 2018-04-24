@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
   <head>
     <title>Place Autocomplete</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -140,7 +138,7 @@
             ].join(' ');
           }
 
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br> Utilisé cette adresse comme domicile ?');
           infowindow.open(map, marker);
         });
 
@@ -162,4 +160,3 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJO3F13I6L2UiUCdfqSw-v0LaJIdlitSs&libraries=places&callback=initMap"
         async defer></script>
   </body>
-</html>
