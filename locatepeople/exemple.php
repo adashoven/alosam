@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	<style type="text/css">
-	  html { height: 100% }
-	  body { height: 100%; margin: 0px; padding: 0px }
-	  #map_canvas { height: 100% ; width:100%;}
-	</style>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9cI_XG36NMDdjEj7wM8HbJ3qyCUGwMgE&callback=initMap"></script>	
-	<script type="text/javascript">
-		var previousPosition = null;
-	
-		function initialize() {
-			map = new google.maps.Map(document.getElementById("map_canvas"), {
-			      zoom: 19,
-			      center: new google.maps.LatLng(48.858565, 2.347198),
-			      mapTypeId: google.maps.MapTypeId.ROADMAP
-			    });		
-		}
-		  
-		if (navigator.geolocation)
-			var watchId = navigator.geolocation.watchPosition(successCallback, null, {enableHighAccuracy:true});
-		else
-			alert("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
-			
-		function successCallback(position){
-			map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 
-				map: map
-			});  
-			if (previousPosition){
-				var newLineCoordinates = [
-					 new google.maps.LatLng(previousPosition.coords.latitude, previousPosition.coords.longitude),
-					 new google.maps.LatLng(position.coords.latitude, position.coords.longitude)];
-				
-				var newLine = new google.maps.Polyline({
-					path: newLineCoordinates,	       
-					strokeColor: "#FF0000",
-					strokeOpacity: 1.0,
-					strokeWeight: 2
-				});
-				newLine.setMap(map);
-			}
-			previousPosition = position;
-		};		
-	</script>
-</head>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
 
-<body onload="initialize()">
-	<div id="map_canvas"></div>
-</body>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        var infoWindow = new google.maps.InfoWindow({map: map});
 
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9cI_XG36NMDdjEj7wM8HbJ3qyCUGwMgE&callback=initMap">
+    </script>
+  </body>
 </html>

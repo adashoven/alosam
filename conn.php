@@ -30,11 +30,12 @@ include('db.php');
 
 			if(count($results) > 0 && $pass == ($results['pass'])){
 				$_SESSION['login'] = $results['login'];
-				$_SESSION['pass'] = $_POST['pass'];
+				$_SESSION['id'] = $results['id'];
 				header('location:acceuil.php');
 				exit;
 			}else{
-				echo 'Username and Password are not found<br>';
+				echo 'pseudo ou mot de passe incorecte<br>';
+				echo '<a href="index.php"> cliquez ici pour retourner sur la connexion</a>';
 			}
 		}
      

@@ -6,7 +6,7 @@
 	</tr>
 
 	<?php
-	
+$note = 0;
 $nbcomm = $databaseConnection->prepare('SELECT COUNT(*) FROM avicond WHERE pseudo_iencli = :login');
 			$nbcomm->bindParam(':login', $login);
 			$nbcomm->execute();
