@@ -1,4 +1,5 @@
 <?php
+
             $records = $databaseConnection->prepare('SELECT id,nom,prenom,login,pass, mail FROM  test WHERE login = :login');
             $records->bindParam(':login',$login );
             $records->execute();
@@ -28,24 +29,5 @@
         </tr>
     </table>
     <a href="chamdp.php">Vous voulez changer votre mot de passe ? Cliquez ici</a> <br>
- <?php           $records = $databaseConnection->prepare('SELECT iencli_adrss,dom FROM  adrsusers WHERE login = :login');
-            $records->bindParam(':login',$login );
-            $records->execute();
-            $results = $records->fetch(PDO::FETCH_ASSOC);
-            $ia = $results['iencli_adrss'];
-            $dom = $results['dom'];
-
-    ?>
-    <table>
-        <tr>
-            <td><p> Adresse </p></td>
-            <td><p> <?php echo $ia;?> </p></td>
-        </tr>        
-        <tr>
-        	
-            <td><p> Domicile ? </p></td>
-            <td><p> <?php echo $dom;?> </p></td>
-        </tr>
-    </table>
     <?php include("adrs.php"); ?>
 </center>

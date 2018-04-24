@@ -2,7 +2,7 @@
 <p> Voila vos adresses connu </p>
 
  <?php           
- $records = $databaseConnection->prepare('SELECT iencli_adrss,dom FROM  adrsusers WHERE login = :login');
+ $records = $databaseConnection->prepare('SELECT iencli_adrss,dom FROM  adrsusers WHERE pseudo_cli = :login');
             $records->bindParam(':login',$login );
             $records->execute();
             $results = $records->fetch(PDO::FETCH_ASSOC);
