@@ -138,7 +138,7 @@
             ].join(' ');
           }
 
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br> Utilisé cette adresse comme domicile ?');
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><strong> Utilisé cette adresse comme domicile ?</strong><br> <form method="POST" action="addadrss.php"> <input type="submit" value="Oui"> <input type="submit" value="Non">');
           infowindow.open(map, marker);
         });
 
